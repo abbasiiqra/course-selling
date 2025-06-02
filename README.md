@@ -59,16 +59,8 @@ A full-stack course-selling platform built with Node.js, Express, and MongoDB. C
 
 - **Authentication & Sessions**  
   - express-session  
-  - Connect-Mongo (optional, if sessions are stored in MongoDB)  
+  - Connect-Mongo  
 
-- **Linting & Formatting**  
-  - ESLint (optional)  
-  - Prettier (optional)  
-
-- **Miscellaneous**  
-  - dotenv (for environment variables)  
-  - bcrypt (for password hashing)  
-  - body-parser (JSON parsing is built into Express ≥4.16)  
 
 ---
 
@@ -81,36 +73,6 @@ Before you begin, ensure you have the following installed:
 - **MongoDB** (local instance or MongoDB Atlas)  
 
 ---
-
-## Folder Structure
-
-course-spill/
-├── config/
-│ ├── sessionConfig.js # session settings for users & admins
-│ └── config.js # other environment config (e.g., .env loader)
-├── controllers/
-│ ├── adminController.js # admin-specific business logic
-│ ├── courseController.js # course-related business logic
-│ └── userController.js # user-related business logic
-├── middleware/
-│ ├── adminMiddleware.js # checks admin permissions
-│ ├── userMiddleware.js # checks user permissions
-│ ├── adminSessionMiddleware.js # express-session for admins
-│ └── userSessionMiddleware.js # express-session for users
-├── models/
-│ ├── adminModel.js # Mongoose schema for admins
-│ ├── userModel.js # Mongoose schema for users (buyers)
-│ ├── courseModel.js # Mongoose schema for courses
-│ └── purchaseModel.js # Mongoose schema for purchase records
-├── routes/
-│ ├── admin.js # admin-only routes (course CRUD, view orders)
-│ ├── course.js # public or user routes related to courses
-│ └── user.js # user authentication & profile routes
-├── index.js # entry point (Express app initialization)
-├── db.js # MongoDB connection logic (via Mongoose)
-├── .env.example # example environment variables
-├── README.md # this file
-└── package.json # project manifest & dependencies
 
 
 ## Environment Variables
