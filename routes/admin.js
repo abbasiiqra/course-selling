@@ -1,23 +1,14 @@
-const { Router }= require("express");
-const adminRouter= Router();
-const {adminModel}= require("../db");
-adminRouter.post("user/signin", (req, res) => {
-  res.send("Hello world!");
-});
-adminRouter.post("user/signup", (req, res) => {
-  res.send("signed up !");
-});
-adminRouter.get("user/purchases", (req, res) => {
-  res.send("course purchased");
-});
-adminRouter.get("course/bulk", (req, res) => {
-  res.send("course purchased");
-});
-adminRouter.post("course/purchases", (req, res) => {
-  res.send("course purchased");
-});
-
+const { Router } = require("express");
+const { adminMiddleware } = require("../middleware/adminMiddleware");
+const adminController = require("../controllers/adminController");
+const adminRouter = Router();
+adminRouter.post("/signup", adminController.adminSignup);
+adminRouter.post("/signin", adminController.adminSignin);
+adminRouter.post("/course", adminMiddleware, adminController.createCourse);
+adminRouter.put("/course", adminMiddleware, adminController.updateCourse);
+adminRouter.delete("/course", adminMiddleware, adminController.deleteCourse);
+adminRouter.get("/course/bulk", adminMiddleware, adminController.getAllCourses);
 
 module.exports = {
-  adminRouter: adminRouter,
+  adminRouter,
 };

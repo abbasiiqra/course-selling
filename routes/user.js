@@ -1,18 +1,12 @@
-const { Router }= require("express");
-const userRouter= Router();
-const {userModel}= require("../db");
+const { Router } = require("express");
+const { userMiddleware } = require("../middleware/userMiddleware");
+const userController = require("../controllers/userController");
 
-userRouter.post("/signin", (req, res) => {
-  res.send("Hello world!");
-});
-userRouter.post("/signup", (req, res) => {
-  res.send("signed up !");
-});
-userRouter.get("/purchases", (req, res) => {
-  res.send("course purchased");
-});
-
+const userRouter = Router();
+userRouter.post("/signin", userController.userSignin);
+userRouter.post("/signout", userController.userSignout);
+userRouter.get("/purchases", userMiddleware, userController.getUserPurchases);
 
 module.exports = {
-  userRouter: userRouter,
+  userRouter,
 };
